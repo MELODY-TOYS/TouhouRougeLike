@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbnqmndj8bgat"]
+[gd_scene load_steps=15 format=3 uid="uid://cbnqmndj8bgat"]
 
 [ext_resource type="Script" uid="uid://c2iv8rxjrb3dl" path="res://scripts/systems/arena.gd" id="1_0qb5y"]
 [ext_resource type="TileSet" uid="uid://ki5s3g4d7np8" path="res://assets/background/internal_placeholder_tileset.tres" id="1_e1t2g"]
 [ext_resource type="Texture2D" uid="uid://cra76e5u57f2w" path="res://assets/Props/bush_1.webp" id="2_457df"]
 [ext_resource type="Texture2D" uid="uid://2rp3qa0tyqr5" path="res://assets/Props/fern_1.webp" id="3_f76od"]
-[ext_resource type="PackedScene" uid="uid://chvkds7pm7kjd" path="res://scenes/player/Player.tscn" id="3_t7xxd"]
 [ext_resource type="Texture2D" uid="uid://dv64wrvnuydlw" path="res://assets/Props/flower_1.webp" id="4_tboqm"]
 [ext_resource type="Texture2D" uid="uid://cv2dwprle0wnp" path="res://assets/Props/grass_1.webp" id="5_qjyki"]
 [ext_resource type="Texture2D" uid="uid://dqyeieca5ss3h" path="res://assets/Props/grass_2.webp" id="6_wh5de"]
@@ -31,6 +30,3 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1, 65536, 65536, 1, 131072, 65536
 [node name="Decorations" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("3_t7xxd")]
-position = Vector2(200, 200)

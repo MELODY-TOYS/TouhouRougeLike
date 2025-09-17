@@ -40,7 +40,6 @@ const TILE_CORNER_BR = Vector2i(7, 7) # 右下角
 
 func _ready() -> void:
 	generate_arena()
-	arena_generated.connect($Player.update_camera_limits)
 
 func generate_arena() -> void:
 	if not tile_map:

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn8uq4l1b40dj"]
+
+[ext_resource type="Script" uid="uid://5fyho8iwp18t" path="res://scripts/systems/enemy_spawner.gd" id="1_f2tmk"]
+[ext_resource type="Resource" uid="uid://b2fg7yg3ilvfs" path="res://datas/waves/test_wave.tres" id="2_s47tq"]
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_f2tmk")
+wave_resource = ExtResource("2_s47tq")

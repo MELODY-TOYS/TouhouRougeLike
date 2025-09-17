@@ -10,6 +10,11 @@ var facing_direction: int = 1
 @onready var camera_2d: Camera2D = $Camera2D
 var is_turning: bool = false
 
+func _ready() -> void:
+	# 在玩家准备就绪时，将自身注册到全局单例中。
+	Global.player = self
+	# ... 你已有的其他 _ready 代码 ...
+
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
@@ -37,7 +42,7 @@ func turn_around():
 	# 压缩阶段
 	var tween_squash = create_tween().set_parallel(true)
 	tween_squash.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_squash.tween_property(sprite_2d, "scale:x", 0.0, 0.15) 
+	tween_squash.tween_property(sprite_2d, "scale:x", 0.1, 0.1) 
 	await tween_squash.finished
 
 	sprite_2d.flip_h = not sprite_2d.flip_h
@@ -45,7 +50,7 @@ func turn_around():
 	# 恢复阶段
 	var tween_recover = create_tween().set_parallel(true)
 	tween_recover.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_recover.tween_property(sprite_2d, "scale:x", 1.0, 0.15)
+	tween_recover.tween_property(sprite_2d, "scale:x", 1.0, 0.1)
 	await tween_recover.finished
 	
 	is_turning=false
@@ -58,3 +63,12 @@ func update_camera_limits(limits_rect: Rect2):
 	camera_2d.limit_top = int(limits_rect.position.y)
 	camera_2d.limit_right = int(limits_rect.end.x)
 	camera_2d.limit_bottom = int(limits_rect.end.y)
+
+# _notification 是一个特殊的Godot函数，用于接收引擎的各种通知。
+# 我们在这里处理“即将被删除”的通知，以确保全局引用被清理。
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		# 当玩家节点即将从场景树中被删除时（例如游戏结束），
+		# 确保全局引用也被清空，避免“悬挂指针”问题。
+		if Global.player == self:
+			Global.player = null

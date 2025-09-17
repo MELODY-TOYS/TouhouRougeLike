@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="WaveResource" load_steps=6 format=3 uid="uid://b2fg7yg3ilvfs"]
+
+[ext_resource type="Script" uid="uid://6hlc28vjn7cd" path="res://scripts/resources/spawn_event.gd" id="1_dwbde"]
+[ext_resource type="Script" uid="uid://c68efv7hatl02" path="res://scripts/resources/wave_resource.gd" id="2_qgam3"]
+[ext_resource type="PackedScene" uid="uid://30ktq4nfbdpc" path="res://scenes/enemies/ChaserEnemy.tscn" id="2_um4ty"]
+
+[sub_resource type="Resource" id="Resource_foicj"]
+script = ExtResource("1_dwbde")
+trigger_time = 2.0
+enemy_scene = ExtResource("2_um4ty")
+count = 1
+spawn_location = 0
+metadata/_custom_type_script = "uid://6hlc28vjn7cd"
+
+[sub_resource type="Resource" id="Resource_f0qx7"]
+script = ExtResource("1_dwbde")
+trigger_time = 5.0
+enemy_scene = ExtResource("2_um4ty")
+count = 3
+spawn_location = 0
+metadata/_custom_type_script = "uid://6hlc28vjn7cd"
+
+[resource]
+script = ExtResource("2_qgam3")
+wave_name = "New Wave"
+duration = 60.0
+events = Array[ExtResource("1_dwbde")]([SubResource("Resource_foicj"), SubResource("Resource_f0qx7")])
+metadata/_custom_type_script = "uid://c68efv7hatl02"
