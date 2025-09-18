@@ -43,7 +43,7 @@ func _chasing_state_logic(delta: float) -> void:
 	# 从StatsComponent获取最新的移动速度。
 	# 这样做的好处是，如果未来有buff或debuff改变了stats.move_speed，
 	# 敌人会立刻以新的速度移动。
-	var move_speed = stats.move_speed
+	var move_speed = stats.get_stat(Attributes.Stat.MOVE_SPEED)
 	
 	# 计算从当前位置到目标位置的方向向量。
 	var direction = global_position.direction_to(target.global_position)

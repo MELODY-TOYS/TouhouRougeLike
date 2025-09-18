@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var animation_blend_time=0.2
 var facing_direction: int = 1
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var view: Node2D = $View
+@onready var sprite_2d: Sprite2D = $View/Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 # 获取对 Camera2D 的引用
 @onready var camera_2d: Camera2D = $Camera2D

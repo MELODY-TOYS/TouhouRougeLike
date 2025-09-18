@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://chvkds7pm7kjd"]
+[gd_scene load_steps=11 format=3 uid="uid://chvkds7pm7kjd"]
 
 [ext_resource type="Script" uid="uid://bdp5rg0k1d1o8" path="res://scripts/player/player.gd" id="1_gfjak"]
 [ext_resource type="Texture2D" uid="uid://cvhpgo6rsyp5a" path="res://assets/characters/001.png" id="2_gfjak"]
 [ext_resource type="Script" uid="uid://bcab4pfdv730f" path="res://scripts/player/player_stats_component.gd" id="3_4kuee"]
+[ext_resource type="Resource" uid="uid://dv8r1n4vwoqcj" path="res://datas/player/player_default_stats.tres" id="4_524rm"]
+[ext_resource type="PackedScene" uid="uid://6iosot4rg4nf" path="res://scenes/ui/HealthBar.tscn" id="5_tpg5x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfjak"]
 radius = 270.0
@@ -15,7 +17,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("View:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +34,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("View:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +49,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("View:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +72,9 @@ collision_layer = 2
 script = ExtResource("1_gfjak")
 animation_blend_time = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="View" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="View"]
 texture_filter = 1
 texture = ExtResource("2_gfjak")
 region_rect = Rect2(0, 26.265, 0, 0)
@@ -103,3 +107,11 @@ shape = SubResource("CapsuleShape2D_gfjak")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_4kuee")
+stats_data = ExtResource("4_524rm")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_tpg5x")]
+offset_left = -170.0
+offset_top = -490.0
+offset_right = 200.0
+offset_bottom = -410.0
+theme_override_font_sizes/font_size = 96

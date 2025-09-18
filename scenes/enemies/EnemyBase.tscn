@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmvwkigwheu1l"]
+[gd_scene load_steps=11 format=3 uid="uid://dmvwkigwheu1l"]
 
 [ext_resource type="Texture2D" uid="uid://com1xv1w6nc47" path="res://assets/characters/enemies/gedama.png" id="1_n83sr"]
 [ext_resource type="Script" uid="uid://cfec3wkddab51" path="res://scripts/enemies/ai/base_enemy_ai.gd" id="1_yo2rv"]
 [ext_resource type="Script" uid="uid://8lm7rm1yrgae" path="res://scripts/enemies/enemy_stats_component.gd" id="2_76qhk"]
-[ext_resource type="Resource" uid="uid://f14mi4itq1m8" path="res://datas/enemies/placeholder_enemy_stats.tres" id="3_yo2rv"]
+[ext_resource type="PackedScene" uid="uid://6iosot4rg4nf" path="res://scenes/ui/HealthBar.tscn" id="5_auavv"]
 [ext_resource type="Script" uid="uid://ccncei5jynpug" path="res://scripts/components/hurtbox_component.gd" id="5_jco0m"]
-[ext_resource type="Script" uid="uid://dc4u72isqt26v" path="res://datas/formulas/attribute_contribution.gd" id="6_14xwe"]
-[ext_resource type="Script" uid="uid://bjnfuwsbdqb7d" path="res://datas/formulas/damage_formula.gd" id="6_auavv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3h47n"]
 radius = 56.0
@@ -68,20 +66,6 @@ _data = {
 &"RESET": SubResource("Animation_4kuee")
 }
 
-[sub_resource type="Resource" id="Resource_30sq3"]
-script = ExtResource("6_14xwe")
-attribute = 0
-multiplier = 1.0
-flat_bonus = 0.0
-metadata/_custom_type_script = "uid://dc4u72isqt26v"
-
-[sub_resource type="Resource" id="Resource_irrv1"]
-script = ExtResource("6_auavv")
-base_value = 0.0
-attribute_contributions = Array[ExtResource("6_14xwe")]([SubResource("Resource_30sq3")])
-final_multiplier = 1.0
-metadata/_custom_type_script = "uid://bjnfuwsbdqb7d"
-
 [node name="EnemyBase" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(0.25, 0.25)
 collision_layer = 4
@@ -103,13 +87,17 @@ libraries = {
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_76qhk")
-stats_data = ExtResource("3_yo2rv")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("5_jco0m")
-damage_formula = SubResource("Resource_irrv1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_3h47n")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_auavv")]
+offset_left = -52.0
+offset_top = -96.0
+offset_right = 48.0
+offset_bottom = -69.0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActorStatsData" load_steps=2 format=3 uid="uid://ds3d537syx58g"]
+
+[ext_resource type="Script" uid="uid://chgphkv4tf4t3" path="res://datas/stats/actor_stats_data.gd" id="1_8gnte"]
+
+[resource]
+script = ExtResource("1_8gnte")
+base_attributes = Dictionary[int, float]({
+0: 20.0,
+1: 20.0,
+5: 5.0,
+8: 120.0
+})
+metadata/_custom_type_script = "uid://chgphkv4tf4t3"

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://30ktq4nfbdpc"]
+[gd_scene load_steps=4 format=3 uid="uid://30ktq4nfbdpc"]
 
 [ext_resource type="PackedScene" uid="uid://dmvwkigwheu1l" path="res://scenes/enemies/EnemyBase.tscn" id="1_8jcsr"]
 [ext_resource type="Script" uid="uid://bms1r5dx4lbxn" path="res://scripts/enemies/ai/chaser_ai.gd" id="2_rc1fm"]
+[ext_resource type="Resource" uid="uid://ds3d537syx58g" path="res://datas/enemies/chaser_enemy_stats.tres" id="3_liu3w"]
 
 [node name="EnemyBase" instance=ExtResource("1_8jcsr")]
 script = ExtResource("2_rc1fm")
+
+[node name="StatsComponent" parent="." index="3"]
+stats_data = ExtResource("3_liu3w")
