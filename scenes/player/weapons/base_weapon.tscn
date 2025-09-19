@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlxoy21xmquqp"]
+
+[ext_resource type="Texture2D" uid="uid://ce1wosk3eu8og" path="res://test/Knife.png" id="1_603c0"]
+
+[node name="BaseWeapon" type="Node2D"]
+
+[node name="View" type="Node2D" parent="."]
+rotation = 5.49779
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="View"]
+texture = ExtResource("1_603c0")
+
+[node name="Hitbox" type="Area2D" parent="View"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="View/Hitbox"]

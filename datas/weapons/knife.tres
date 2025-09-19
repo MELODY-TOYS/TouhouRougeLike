@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://dbuxwtdd5fi1y"]
+
+[ext_resource type="Script" uid="uid://bglnyjaqwqyat" path="res://scripts/resources/weapon_resource.gd" id="1_1a17s"]
+[ext_resource type="Script" uid="uid://dc4u72isqt26v" path="res://datas/formulas/attribute_contribution.gd" id="1_8dbk4"]
+[ext_resource type="Script" uid="uid://bjnfuwsbdqb7d" path="res://datas/formulas/damage_formula.gd" id="2_fep3i"]
+
+[sub_resource type="Resource" id="Resource_og6qu"]
+script = ExtResource("2_fep3i")
+base_value = 5.0
+attribute_contributions = Array[ExtResource("1_8dbk4")]([])
+final_multiplier = 1.0
+metadata/_custom_type_script = "uid://bjnfuwsbdqb7d"
+
+[resource]
+script = ExtResource("1_1a17s")
+id = &"knife"
+weapon_name = "小刀"
+tags = Array[String]([])
+behavior_type = 1
+base_cooldown = 1.0
+range = 125.0
+damage_formula = SubResource("Resource_og6qu")
+metadata/_custom_type_script = "uid://bglnyjaqwqyat"

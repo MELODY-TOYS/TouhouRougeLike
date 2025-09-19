@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://co8h37ctsb34g"]
+
+[ext_resource type="Script" uid="uid://dc4u72isqt26v" path="res://datas/formulas/attribute_contribution.gd" id="1_47yxk"]
+[ext_resource type="Script" uid="uid://bglnyjaqwqyat" path="res://scripts/resources/weapon_resource.gd" id="1_pye8i"]
+[ext_resource type="Script" uid="uid://bjnfuwsbdqb7d" path="res://datas/formulas/damage_formula.gd" id="2_imngg"]
+
+[sub_resource type="Resource" id="Resource_ugpwv"]
+script = ExtResource("2_imngg")
+base_value = 5.0
+attribute_contributions = Array[ExtResource("1_47yxk")]([])
+final_multiplier = 1.0
+metadata/_custom_type_script = "uid://bjnfuwsbdqb7d"
+
+[resource]
+script = ExtResource("1_pye8i")
+id = &"anchor"
+weapon_name = "锚"
+tags = Array[String]([])
+behavior_type = 2
+base_cooldown = 1.0
+range = 500.0
+damage_formula = SubResource("Resource_ugpwv")
+metadata/_custom_type_script = "uid://bglnyjaqwqyat"

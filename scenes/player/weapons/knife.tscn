@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1lykcb0fu4q7"]
+
+[ext_resource type="PackedScene" uid="uid://dlxoy21xmquqp" path="res://scenes/player/weapons/base_weapon.tscn" id="1_yudoh"]
+[ext_resource type="Script" uid="uid://ca1e7p7fym8nb" path="res://scripts/player/weapons/thrust_weapon.gd" id="2_weha3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_weha3"]
+radius = 18.0
+height = 120.0
+
+[node name="BaseWeapon" instance=ExtResource("1_yudoh")]
+script = ExtResource("2_weha3")
+
+[node name="View" parent="." index="0"]
+rotation = 0.785398
+
+[node name="Hitbox" parent="View" index="1"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="View/Hitbox" index="0"]
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_weha3")

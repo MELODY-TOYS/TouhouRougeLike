@@ -24,3 +24,13 @@ func _ready() -> void:
 	# 在这里，我们直接命令 EnemySpawner 开始它的工作。
 	# 这是另一处从 arena.gd 转移过来的逻辑。
 	enemy_spawner.start_wave()
+
+	await get_tree().process_frame
+
+	# 获取玩家身上的武器管理器
+	var weapon_manager = player.get_node_or_null("WeaponManager")
+	if weapon_manager:
+		# 命令管理器添加小刀
+		weapon_manager.add_weapon("res://scenes/player/weapons/anchor.tscn")
+	else:
+		push_error("在Player节点上未找到WeaponManager！")

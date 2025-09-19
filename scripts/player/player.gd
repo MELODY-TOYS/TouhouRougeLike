@@ -43,7 +43,7 @@ func turn_around():
 	# 压缩阶段
 	var tween_squash = create_tween().set_parallel(true)
 	tween_squash.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_squash.tween_property(sprite_2d, "scale:x", 0.1, 0.1) 
+	tween_squash.tween_property(view, "scale:x", 0.1, 0.1) 
 	await tween_squash.finished
 
 	sprite_2d.flip_h = not sprite_2d.flip_h
@@ -51,7 +51,7 @@ func turn_around():
 	# 恢复阶段
 	var tween_recover = create_tween().set_parallel(true)
 	tween_recover.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween_recover.tween_property(sprite_2d, "scale:x", 1.0, 0.1)
+	tween_recover.tween_property(view, "scale:x", 1.0, 0.1)
 	await tween_recover.finished
 	
 	is_turning=false
