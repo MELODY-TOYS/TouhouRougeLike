@@ -72,7 +72,6 @@ collision_layer = 4
 script = ExtResource("1_yo2rv")
 
 [node name="View" type="Node2D" parent="."]
-scale = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="View"]
 texture = ExtResource("1_n83sr")

@@ -31,6 +31,6 @@ func _ready() -> void:
 	var weapon_manager = player.get_node_or_null("WeaponManager")
 	if weapon_manager:
 		# 命令管理器添加小刀
-		weapon_manager.add_weapon("res://scenes/player/weapons/anchor.tscn")
+		weapon_manager.add_weapon("res://scenes/player/weapons/shotgun.tscn")
 	else:
 		push_error("在Player节点上未找到WeaponManager！")

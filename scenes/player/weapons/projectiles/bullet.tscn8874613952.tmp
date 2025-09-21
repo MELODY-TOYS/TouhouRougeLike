@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dt7we2c62cvr8"]
+
+[ext_resource type="Script" uid="uid://dvny5eautf7b5" path="res://scripts/player/weapons/projectiles/base_projectile.gd" id="1_mav8o"]
+[ext_resource type="Shader" uid="uid://xerv6vv8ln4h" path="res://scenes/player/weapons/ice.gdshader" id="2_aqft5"]
+[ext_resource type="Texture2D" uid="uid://dx7g5boacdnu6" path="res://assets/weapons/ice.png" id="2_mav8o"]
+[ext_resource type="Script" uid="uid://bhgs3ibyk1chv" path="res://scripts/arts/DetachableTrail.gd" id="4_p0ixh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mav8o"]
+radius = 14.0
+height = 84.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xwnbh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aqft5"]
+seamless = true
+seamless_blend_skirt = 0.5
+noise = SubResource("FastNoiseLite_xwnbh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0ixh"]
+shader = ExtResource("2_aqft5")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_aqft5")
+shader_parameter/scroll_speed = 0.1
+shader_parameter/distortion_strength = 0.01
+shader_parameter/glow_color = Color(0.5, 0.9, 1, 1)
+shader_parameter/glow_brightness_threshold = 0.85
+shader_parameter/glow_speed = 5.0
+shader_parameter/glow_intensity = 0.5
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aqft5"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-20, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector3(0, 98, 0)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_mav8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_mav8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p0ixh")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_mav8o")
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_aqft5")
+script = ExtResource("4_p0ixh")

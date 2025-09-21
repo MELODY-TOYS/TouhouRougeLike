@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://chvkds7pm7kjd"]
+[gd_scene load_steps=14 format=3 uid="uid://chvkds7pm7kjd"]
 
 [ext_resource type="Script" uid="uid://bdp5rg0k1d1o8" path="res://scripts/player/player.gd" id="1_gfjak"]
 [ext_resource type="Texture2D" uid="uid://cvhpgo6rsyp5a" path="res://assets/characters/001.png" id="2_gfjak"]
@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://6iosot4rg4nf" path="res://scenes/ui/HealthBar.tscn" id="5_tpg5x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfjak"]
-radius = 270.0
-height = 800.0
+radius = 250.0
+height = 860.0
 
 [sub_resource type="Animation" id="Animation_gfjak"]
 resource_name = "Idle"
@@ -67,6 +67,19 @@ _data = {
 &"RESET": SubResource("Animation_4kuee")
 }
 
+[sub_resource type="Gradient" id="Gradient_c3xxp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.2, 0.6, 1)
+colors = PackedColorArray(0.588235, 0.588235, 0.588235, 1, 0.196078, 0.196078, 0.196078, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_npwbq"]
+gradient = SubResource("Gradient_c3xxp")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_gfjak")
@@ -82,6 +95,7 @@ texture = ExtResource("2_gfjak")
 region_rect = Rect2(0, 26.265, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CapsuleShape2D_gfjak")
 
@@ -107,6 +121,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 shape = SubResource("CapsuleShape2D_gfjak")
 
 [node name="StatsComponent" type="Node" parent="."]
@@ -123,3 +138,10 @@ offset_top = -84.0
 offset_right = 51.0
 offset_bottom = -46.0
 theme_override_font_sizes/font_size = 24
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_npwbq")
+texture_scale = 5.0
+height = 10.0

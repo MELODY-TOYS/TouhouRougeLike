@@ -1,25 +1,20 @@
 # res://scripts/player/weapons/thrust_weapon.gd
 class_name ThrustWeapon
-extends BaseWeaponInstance
+extends MeleeWeaponInstance # <--- 继承自新的 MeleeWeaponInstance
 
 # --- 行为定义 ---
 const THRUST_ANIMATION_RATIO = 0.4 
 
-# --- 内部状态 ---
-var hit_list: Array = []
-
-# --- Godot 生命周期 ---
-func _ready():
-	super()
-	# ... (连接Hitbox信号的逻辑不变) ...
+# _ready() 函数已被移除，因为它的逻辑已移至 MeleeWeaponInstance
+# var hit_list 已被移除，因为它现在由父类 MeleeWeaponInstance 提供
 
 # --- 核心攻击实现 ---
 func _execute_attack():
-	# 基类已经找到了目标，并上锁了is_attacking
 	if not is_instance_valid(current_target):
-		is_attacking = false # 没目标，直接解锁
+		is_attacking = false
 		return
 
+	is_attacking = true
 	_execute_thrust_animation(current_target)
 
 func _execute_thrust_animation(target: Node2D):
@@ -29,9 +24,8 @@ func _execute_thrust_animation(target: Node2D):
 	var original_position = self.position
 
 	%Hitbox.monitoring = true
-	hit_list.clear()
+	hit_list.clear() # <--- hit_list 依然在这里清空
 
-	# 攻击方向已经被基类在攻击前锁定
 	var direction = Vector2.RIGHT.rotated(rotation)
 	var thrust_distance = weapon_data.range
 	var target_position = original_position + direction * thrust_distance
@@ -42,17 +36,6 @@ func _execute_thrust_animation(target: Node2D):
 
 	await tween.finished
 	%Hitbox.monitoring = false
-	is_attacking = false # 解锁
+	is_attacking = false
 
-# --- 命中逻辑 ---
-func _on_hitbox_body_entered(body: Node2D):
-	# ... (命中逻辑与SwipeWeapon完全相同) ...
-	if not body.is_in_group("enemy") or hit_list.has(body):
-		return
-	
-	hit_list.append(body)
-
-	var target_stats = ASC.get_stats_component_from(body)
-	if target_stats and weapon_data:
-		var base_damage = weapon_data.damage_formula.base_value
-		target_stats.process_damage(Global.player, self, base_damage)
+# _on_hitbox_body_entered(body) 函数已被移除，因为它的逻辑已移至 MeleeWeaponInstance

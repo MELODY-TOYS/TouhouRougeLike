@@ -35,7 +35,7 @@ func calculate(source_stats: BaseStatsComponent) -> float:
 			continue
 		
 		# 从攻击方的StatsComponent中，获取当前属性的数值。
-		var attribute_value = source_stats.get_attribute_value(contribution.attribute)
+		var attribute_value = source_stats.get_stat(contribution.attribute)
 		
 		# 应用该贡献的公式：(属性值 * 乘区) + 固定值
 		calculated_value += (attribute_value * contribution.multiplier) + contribution.flat_bonus

@@ -73,3 +73,30 @@ func _notification(what: int) -> void:
 		# 确保全局引用也被清空，避免“悬挂指针”问题。
 		if Global.player == self:
 			Global.player = null
+
+func initialize(char_data: CharacterData):
+	# 检查传入的数据是否有效
+	if not char_data:
+		push_error("错误: 尝试用空的 CharacterData 初始化玩家！")
+		return
+
+	# 1. 初始化属性组件
+	#    我们假设 Player 场景中有一个名为 "PlayerStatsComponent" 的子节点
+	var stats_component = $PlayerStatsComponent as BaseStatsComponent
+	if stats_component and char_data.base_stats_data:
+		stats_component.initialize_with_data(char_data.base_stats_data)
+	else:
+		push_warning("警告: 找不到 PlayerStatsComponent 或 CharacterData 中缺少 base_stats_data。")
+
+	# 2. 初始化初始武器
+	#    我们假设 Player 场景中有一个名为 "WeaponManager" 的子节点
+	var weapon_manager = $WeaponManager # weapon_manager 脚本需要有 add_weapon 方法
+	if weapon_manager and char_data.starting_weapon:
+		weapon_manager.add_weapon(char_data.starting_weapon)
+	else:
+		push_warning("警告: 找不到 WeaponManager 或 CharacterData 中缺少 starting_weapon。")
+
+	# 3. [未来] 应用天赋
+	# if char_data.talents:
+	# 	for talent in char_data.talents:
+	# 		talent.apply(self)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://8yet82nki7ru"]
+
+[ext_resource type="Script" uid="uid://c5eqkbkndm14q" path="res://scripts/vfx/base_effect.gd" id="1_jnwff"]
+
+[sub_resource type="Gradient" id="Gradient_jnwff"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rkc6x"]
+gradient = SubResource("Gradient_jnwff")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_beryd"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -360.0
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+damping_min = 200.0
+damping_max = 300.0
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_rkc6x")
+
+[node name="IceImpactEffect" type="Node2D"]
+script = ExtResource("1_jnwff")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_beryd")
+
+[node name="PointLight2D" type="PointLight2D" parent="GPUParticles2D"]
