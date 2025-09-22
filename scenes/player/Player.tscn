@@ -140,6 +140,7 @@ offset_bottom = -46.0
 theme_override_font_sizes/font_size = 24
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 range_z_min = -1
 range_z_max = 1
 texture = SubResource("GradientTexture2D_npwbq")

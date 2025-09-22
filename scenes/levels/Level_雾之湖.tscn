@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://benj3in05oedv"]
+
+[ext_resource type="Shader" uid="uid://hy7keummq282" path="res://scripts/arts/water.gdshader" id="1_awwh6"]
+[ext_resource type="Texture2D" uid="uid://bce715arb34r5" path="res://icon.svg" id="2_wdih2"]
+[ext_resource type="Shader" uid="uid://gyc8qn83hsc" path="res://scripts/arts/fog_display.gdshader" id="5_uudqh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_awwh6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wdih2"]
+width = 1024
+height = 1024
+invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_awwh6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdih2"]
+shader = ExtResource("1_awwh6")
+shader_parameter/water_dark_color = Color(0.15, 0.3, 0.6, 1)
+shader_parameter/water_light_color = Color(0.3, 0.5, 0.8, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_wdih2")
+shader_parameter/scroll_speed = Vector2(0.005, 0.002)
+shader_parameter/scale = 800.0
+shader_parameter/color_threshold = 0.5
+shader_parameter/edge_softness = 0.01
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kw5np"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kw5np"]
+width = 256
+height = 256
+seamless = true
+noise = SubResource("FastNoiseLite_kw5np")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kw5np"]
+shader = ExtResource("5_uudqh")
+shader_parameter/arena_size = Vector2(768, 768)
+shader_parameter/arena_edge_softness = 50.0
+shader_parameter/fog_color = Color(0.8, 0.85, 0.9, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kw5np")
+shader_parameter/scroll_speed_layer1 = Vector2(0.01, 0.005)
+shader_parameter/scale_layer1 = 600.0
+shader_parameter/scroll_speed_layer2 = Vector2(-0.04, 0.03)
+shader_parameter/scale_layer2 = 500.0
+shader_parameter/fog_threshold = 0.0
+shader_parameter/fog_softness = 0.126
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kw5np"]
+size = Vector2(5000, 5000)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wdih2")
+scale = Vector2(8, 8)
+texture = ExtResource("2_wdih2")
+region_rect = Rect2(1024, 1024, 1024, 1024)
+metadata/_edit_lock_ = true
+
+[node name="Fog" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kw5np")
+texture = SubResource("PlaceholderTexture2D_kw5np")

@@ -1,87 +1,37 @@
-@tool
+# arena.gd
 extends Node2D
 
-signal arena_generated(limits_rect: Rect2)
+# 使用 enum 可以让你在 Godot 编辑器中看到一个下拉菜单，非常方便！
+enum MapType { BAMBOO_FOREST, MISTY_LAKE }
 
-# --- 节点引用 ---
-@onready var ground_layer: TileMapLayer = $TileLayers/GroundLayer
-@onready var obstacle_layer: TileMapLayer = $TileLayers/ObstacleLayer
+# 导出这个变量，这样你就可以在 Game.tscn 的编辑器界面里直接选择地图了
+@export var current_map_type: MapType = MapType.MISTY_LAKE
 
-# --- 竞技场尺寸 ---
-@export var width: int = 8:
-	set(value):
-		width = value
-		if _can_generate():
-			generate_arena()
+# 预加载你的纯视觉地图场景
+const MAP_SCENES = {
+	
+}
 
-@export var height: int = 8:
-	set(value):
-		height = value
-		if _can_generate():
-			generate_arena()
+@onready var map_container = $MapContainer
 
-# =================== 瓦片常量定义 ===================
-# --- 地面瓦片 ---
-const FLOOR_TILES: Array[Vector2i] = [ Vector2i(1, 1) ]
+func _ready():
+	# 场景启动时，根据在编辑器里选好的类型加载地图
+	load_current_map()
 
-# --- 竹子墙壁瓦片 ---
-# 假设你新画的、有层次感的竹墙瓦片坐标是 (0,0) in your Bamboo.tres
-const BAMBOO_WALL_HORIZONTAL = Vector2i(0, 2) 
-# =======================================================
+func load_current_map():
+	# 确保 map_container 是空的
+	for child in map_container.get_children():
+		child.queue_free()
 
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		call_deferred("generate_arena")
+	# 检查我们选择的地图是否存在
+	if MAP_SCENES.has(current_map_type):
+		var map_scene = MAP_SCENES[current_map_type]
+		var map_instance = map_scene.instantiate()
+		map_container.add_child(map_instance)
 	else:
-		generate_arena()
+		print("Selected map type does not exist!")
 
-# 主生成函数
-func generate_arena() -> void:
-	if not _can_generate():
-		return
-
-	ground_layer.clear()
-	obstacle_layer.clear()
-	
-	var offset = Vector2i(-width / 2, -height / 2)
-	
-	for x in range(width):
-		for y in range(height):
-			var final_pos = Vector2i(x, y) + offset
-			
-			# --- 1. 绘制地面 (逻辑不变) ---
-			var floor_coord = FLOOR_TILES.pick_random()
-			ground_layer.set_cell(final_pos, 0, floor_coord)
-
-			# --- 2. 【核心改动】只在顶部和底部边界生成竹墙 ---
-			var is_top_boundary = (y == 0)
-			var is_bottom_boundary = (y == height - 1)
-			
-			if is_top_boundary:
-				# 在顶部边界放置竹墙
-				obstacle_layer.set_cell(final_pos, 0, BAMBOO_WALL_HORIZONTAL,2)
-			
-			elif is_bottom_boundary:
-				# 在底部边界放置竹墙
-				# 我们可以使用同一个瓦片，但通过翻转来增加变化
-				# Alternative ID 1 应该在 TileSet 中设置为 Flip V = true
-				# 如果你还没设置，它会和顶部看起来一样，也没关系
-				obstacle_layer.set_cell(final_pos, 0, BAMBOO_WALL_HORIZONTAL)
-
-	# --- 发射边界信号 (逻辑不变) ---
-	var tile_size = ground_layer.tile_set.tile_size
-	var limits = Rect2(
-		- (width / 2.0) * tile_size.x, 
-		- (height / 2.0) * tile_size.y, 
-		width * tile_size.x, 
-		height * tile_size.y
-	)	
-	arena_generated.emit(limits)
-
-# (辅助函数 _can_generate 不变)
-func _can_generate() -> bool:
-	if not is_inside_tree() or not is_instance_valid(ground_layer) or not is_instance_valid(obstacle_layer):
-		return false
-	if ground_layer.tile_set == null or obstacle_layer.tile_set == null:
-		return false
-	return true
+# （可选）提供一个公共接口，让 Game.gd 可以在游戏过程中切换地图
+func change_map(new_map_type: MapType):
+	current_map_type = new_map_type
+	load_current_map()

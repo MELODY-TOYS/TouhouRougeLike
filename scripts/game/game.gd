@@ -17,14 +17,14 @@ func _ready() -> void:
 	# 我们在这里监听 Arena 发出的 arena_generated 信号，
 	# 当信号发出时，调用 Player 节点上的 update_camera_limits 函数。
 	# 这是之前在 arena.gd 中的耦合代码，现在被转移到了更高层级的管理者手中。
-	arena.arena_generated.connect(player.update_camera_limits)
+	#arena.arena_generated.connect(player.update_camera_limits)
 
 	# 2. 启动游戏核心循环
 	# Game 场景决定游戏何时开始。
 	# 在这里，我们直接命令 EnemySpawner 开始它的工作。
 	# 这是另一处从 arena.gd 转移过来的逻辑。
 	enemy_spawner.start_wave()
-
+	player.update_camera_limits
 	await get_tree().process_frame
 
 	# 获取玩家身上的武器管理器
