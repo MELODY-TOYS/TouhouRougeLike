@@ -4,7 +4,9 @@ extends Node
 
 # ... (信号和核心属性定义不变) ...
 signal health_updated(current_health, max_health)
-signal died(killer)
+
+@warning_ignore("unused_signal")
+signal died()
 @export var stats_data: ActorStatsData
 
 func _ready():
@@ -29,5 +31,5 @@ func get_stat(stat_to_get: Attributes.Stat) -> float:
 func set_stat(stat_to_set: Attributes.Stat, value: float):
 	stats_data.base_attributes[stat_to_set] = value
 
-func process_damage(attacker: Node, physical_source: Node, base_damage: float):
+func process_damage(_attacker: Node, _physical_source: Node, _base_damage: float):
 	push_error("错误：方法 process_damage() 必须被 '%s' 的子类实现！" % self.name)

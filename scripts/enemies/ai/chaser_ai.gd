@@ -22,6 +22,7 @@ func _ready() -> void:
 	change_state(State.CHASING)
 
 func _physics_process(delta: float) -> void:
+	
 	# ChaserAI的状态机只处理它关心的状态。
 	match current_state:
 		State.CHASING:
@@ -30,7 +31,7 @@ func _physics_process(delta: float) -> void:
 # --- 状态逻辑 ---
 
 # 将具体的状态逻辑封装在独立的函数中，保持_physics_process的整洁。
-func _chasing_state_logic(delta: float) -> void:
+func _chasing_state_logic(_delta: float) -> void:
 	# 健壮性检查：在每一帧都确认目标是否依然有效。
 	# is_instance_valid() 是检查一个节点是否已被从场景树中移除（比如玩家死亡）的最安全方式。
 	if not is_instance_valid(target):

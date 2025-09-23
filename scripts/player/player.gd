@@ -16,7 +16,7 @@ func _ready() -> void:
 	Global.player = self
 	# ... 你已有的其他 _ready 代码 ...
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
 	move_and_slide()
@@ -100,3 +100,8 @@ func initialize(char_data: CharacterData):
 	# if char_data.talents:
 	# 	for talent in char_data.talents:
 	# 		talent.apply(self)
+func absorb_power_item() -> void:
+	# 玩家 "Pawn" 的职责是报告事件
+	# 它告诉 "PlayerState" (Global)：“我吸收了一个道具”
+	# 具体的数值计算由 Global 自己完成
+	PlayerState.add_resources(1, 1)

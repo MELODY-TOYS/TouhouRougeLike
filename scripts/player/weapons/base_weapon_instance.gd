@@ -16,7 +16,7 @@ func _ready():
 	_load_data()
 	_initialize_timer()
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	# 只有在不攻击时，才更新目标和朝向
 	if not is_attacking:
 		current_target = _find_nearest_enemy()
@@ -82,7 +82,7 @@ func _find_nearest_enemy() -> Node2D:
 	var nearest_enemy = null
 	if not weapon_data: return null
 	
-	var search_range_sq = weapon_data.range * weapon_data.range
+	var search_range_sq = weapon_data.attack_range * weapon_data.attack_range
 	var min_dist_sq = search_range_sq
 
 	for enemy in enemies:

@@ -24,7 +24,8 @@ func _ready() -> void:
 	# 在这里，我们直接命令 EnemySpawner 开始它的工作。
 	# 这是另一处从 arena.gd 转移过来的逻辑。
 	enemy_spawner.start_wave()
-	player.update_camera_limits
+	#todo，更新这个逻辑
+	#Global.player.update_camera_limits()
 	await get_tree().process_frame
 
 	# 获取玩家身上的武器管理器

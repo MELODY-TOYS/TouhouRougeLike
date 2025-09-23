@@ -2,13 +2,6 @@
 class_name DamageFormula
 extends Resource
 
-# --- 核心修正：强制预加载依赖 ---
-# 我们在脚本的顶部创建一个常量，并使用preload()来加载Attributes.gd。
-# 这会强制Godot的解析器在处理后续代码之前，先去加载并理解Attributes.gd。
-# 这样，当它遇到 @export_enum(Attributes.Stat) 时，它就已经知道 Attributes 是什么了。
-const Attributes = preload("res://scripts/core/attributes.gd")
-
-
 # -----------------------------------------------------------------------------
 # -- DamageFormula 的主属性 --
 # -----------------------------------------------------------------------------

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dea01lb2xhqfm"]
+
+[ext_resource type="Script" uid="uid://dh0y3l0yov3mj" path="res://scripts/loots/power_item.gd" id="1_0207d"]
+[ext_resource type="Texture2D" uid="uid://bswclnw3llnvy" path="res://assets/Props/P.png" id="1_sgjbw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgjbw"]
+size = Vector2(16, 16)
+
+[node name="PowerItem" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_sgjbw")
+
+[node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_0207d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+shape = SubResource("RectangleShape2D_sgjbw")

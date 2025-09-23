@@ -11,6 +11,7 @@ script = ExtResource("1_0sr1o")
 [node name="Arena" parent="." instance=ExtResource("1_7h61r")]
 
 [node name="Player" parent="." instance=ExtResource("2_0sr1o")]
+speed = null
 
 [node name="Enemies" type="Node2D" parent="."]
 

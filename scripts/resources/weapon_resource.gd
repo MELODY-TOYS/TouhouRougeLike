@@ -30,6 +30,6 @@ enum BehaviorType {
 @export_group("核心数值")
 # 武器的冷却时间，未来可以用公式资源代替
 @export var base_cooldown: float = 1.0
-@export var range: float = 300.0 # 武器的有效范围 (索敌和攻击都用)
+@export var attack_range: float = 300.0 # 武器的有效范围 (索敌和攻击都用)
 # 武器的基础伤害公式
 @export var damage_formula: DamageFormula

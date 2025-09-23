@@ -3,7 +3,7 @@ class_name EnemyStatsComponent
 extends BaseStatsComponent
 
 # 覆写基类定义的“伤害处理”接口
-func process_damage(attacker: Node, physical_source: Node, base_damage: float) -> void:
+func process_damage(_attacker: Node, _physical_source: Node, base_damage: float) -> void:
 	var health = get_stat(Attributes.Stat.HEALTH)
 	if health <= 0:
 		return
@@ -23,4 +23,4 @@ func process_damage(attacker: Node, physical_source: Node, base_damage: float) -
 
 	# 检查死亡
 	if health == 0.0:
-		died.emit(attacker)
+		died.emit()
