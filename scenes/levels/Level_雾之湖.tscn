@@ -1,8 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://benj3in05oedv"]
+[gd_scene load_steps=15 format=3 uid="uid://benj3in05oedv"]
 
 [ext_resource type="Shader" uid="uid://hy7keummq282" path="res://scripts/arts/water.gdshader" id="1_awwh6"]
 [ext_resource type="Texture2D" uid="uid://bce715arb34r5" path="res://icon.svg" id="2_wdih2"]
+[ext_resource type="Shader" uid="uid://bc7bx8rffovud" path="res://scripts/arts/lakebed.gdshader" id="3_xg1q3"]
 [ext_resource type="Shader" uid="uid://gyc8qn83hsc" path="res://scripts/arts/fog_display.gdshader" id="5_uudqh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xg1q3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uudqh"]
+noise = SubResource("FastNoiseLite_xg1q3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uudqh"]
+shader = ExtResource("3_xg1q3")
+shader_parameter/sand_color = Color(0.35, 0.3, 0.2, 1)
+shader_parameter/rock_color = Color(0.5, 0.45, 0.4, 1)
+shader_parameter/rock_shadow_color = Color(0.2, 0.18, 0.15, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uudqh")
+shader_parameter/scroll_speed = Vector2(0.003, 0.001)
+shader_parameter/base_scale = 700.0
+shader_parameter/rock_scale = 400.0
+shader_parameter/rock_threshold = 0.5
+shader_parameter/rock_softness = 0.02
+shader_parameter/rock_shadow_offset = 0.01
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_awwh6"]
 
@@ -15,13 +34,16 @@ noise = SubResource("FastNoiseLite_awwh6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wdih2"]
 shader = ExtResource("1_awwh6")
-shader_parameter/water_dark_color = Color(0.15, 0.3, 0.6, 1)
-shader_parameter/water_light_color = Color(0.3, 0.5, 0.8, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_wdih2")
+shader_parameter/water_color = Color(0.3, 0.5, 0.8, 0.3)
+shader_parameter/refraction_strength = 0.01
+shader_parameter/caustics_strength = 0.5
+shader_parameter/caustics_scale = 700.0
+shader_parameter/caustics_speed_multiplier = 0.3
+shader_parameter/specular_shininess = 32.0
+shader_parameter/specular_strength = 0.8
 shader_parameter/scroll_speed = Vector2(0.005, 0.002)
-shader_parameter/scale = 800.0
-shader_parameter/color_threshold = 0.5
-shader_parameter/edge_softness = 0.01
+shader_parameter/fake_normal_strength = 20.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kw5np"]
 
@@ -49,6 +71,13 @@ size = Vector2(5000, 5000)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_uudqh")
+scale = Vector2(8, 8)
+texture = ExtResource("2_wdih2")
+region_rect = Rect2(1024, 1024, 1024, 1024)
+metadata/_edit_lock_ = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wdih2")
 scale = Vector2(8, 8)
@@ -57,5 +86,10 @@ region_rect = Rect2(1024, 1024, 1024, 1024)
 metadata/_edit_lock_ = true
 
 [node name="Fog" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_kw5np")
 texture = SubResource("PlaceholderTexture2D_kw5np")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.272572, 0.328996, 0.775162, 1)
+energy = 0.1

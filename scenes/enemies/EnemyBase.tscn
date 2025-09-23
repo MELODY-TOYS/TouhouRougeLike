@@ -96,6 +96,7 @@ script = ExtResource("5_jco0m")
 shape = SubResource("CapsuleShape2D_3h47n")
 
 [node name="HealthBar" parent="." instance=ExtResource("5_auavv")]
+visible = false
 offset_left = -52.0
 offset_top = -96.0
 offset_right = 48.0

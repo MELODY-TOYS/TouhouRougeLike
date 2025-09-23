@@ -133,6 +133,7 @@ script = ExtResource("5_c3xxp")
 orbit_radius = 45.0
 
 [node name="HealthBar" parent="." instance=ExtResource("5_tpg5x")]
+visible = false
 offset_left = -49.0
 offset_top = -84.0
 offset_right = 51.0
