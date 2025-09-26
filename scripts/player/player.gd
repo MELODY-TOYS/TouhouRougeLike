@@ -9,6 +9,7 @@ var facing_direction: int = 1
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 # 获取对 Camera2D 的引用
 @onready var camera_2d: Camera2D = $Camera2D
+var _input_enabled: bool = true
 var is_turning: bool = false
 
 func _ready() -> void:
@@ -105,3 +106,26 @@ func absorb_power_item() -> void:
 	# 它告诉 "PlayerState" (Global)：“我吸收了一个道具”
 	# 具体的数值计算由 Global 自己完成
 	PlayerState.add_resources(1, 1)
+
+# 这是我们给 GameManager 调用的“总开关”
+func set_input_enabled(is_enabled: bool) -> void:
+	# 如果状态没有变化，则不执行任何操作
+	if is_enabled == _input_enabled:
+		return
+	
+	_input_enabled = is_enabled
+	
+	# --- 核心操作 ---
+	# 1. 开/关物理处理（负责移动）
+	set_physics_process(is_enabled)
+	
+	# 2. 开/关输入事件处理（负责攻击、技能等）
+	# set_process_unhandled_input(is_enabled) # 如果你有攻击等逻辑，就取消这行的注释
+	
+	# 3. （重要）如果被禁用了，立刻停止所有正在进行的移动
+	if not is_enabled:
+		velocity = Vector2.ZERO
+		animation_player.stop()
+		move_and_slide() # 应用零速度
+	
+	print("玩家输入已 %s" % ["禁用", "启用"][int(is_enabled)])

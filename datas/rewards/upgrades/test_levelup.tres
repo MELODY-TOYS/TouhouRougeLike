@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RewardData" load_steps=3 format=3 uid="uid://cyn4e3u8cebxn"]
+
+[ext_resource type="Texture2D" uid="uid://bce715arb34r5" path="res://icon.svg" id="1_m6bie"]
+[ext_resource type="Script" uid="uid://dm01a8qk7mcm5" path="res://scripts/resources/rewards/reward_data.gd" id="1_mvjfd"]
+
+[resource]
+script = ExtResource("1_mvjfd")
+display_name = "未命名奖励"
+type_text = "通用奖励"
+icon = ExtResource("1_m6bie")
+base_price = 0
+description = "这是一个奖励。1232"
+metadata/_custom_type_script = "uid://dm01a8qk7mcm5"

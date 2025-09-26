@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://deo0ya23a7mu7"]
+
+[ext_resource type="PackedScene" uid="uid://d4gs2dvyr1ekd" path="res://scenes/ui/StatRow.tscn" id="1_fdpgn"]
+
+[node name="PlayerStatsPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="StatRow" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+
+[node name="StatRow2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "生命再生"
+stat_type = 2
+
+[node name="StatRow3" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "生命窃取"
+stat_type = 16
+
+[node name="StatRow4" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "伤害"
+
+[node name="StatRow5" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "近战伤害"
+
+[node name="StatRow6" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "远程伤害"
+
+[node name="StatRow7" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "元素伤害"
+
+[node name="StatRow8" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "攻击速度"
+
+[node name="StatRow9" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "暴击率"
+
+[node name="StatRow10" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "工程学"
+
+[node name="StatRow11" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "范围"
+
+[node name="StatRow12" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "护甲"
+
+[node name="StatRow13" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "闪避"
+
+[node name="StatRow14" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "速度"
+
+[node name="StatRow15" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "幸运"
+
+[node name="StatRow16" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_fdpgn")]
+layout_mode = 2
+display_name = "收获"

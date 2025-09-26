@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg8hysge8lsiv"]
+
+[ext_resource type="Script" uid="uid://yvgw2xhy8fn2" path="res://scripts/ui/postWave/item_choice_ui.gd" id="1_ard8x"]
+[ext_resource type="PackedScene" uid="uid://dqhhdd3khhc53" path="res://scenes/ui/postWave/ItemRewardCard.tscn" id="2_ard8x"]
+[ext_resource type="Resource" uid="uid://cyn4e3u8cebxn" path="res://datas/rewards/upgrades/test_levelup.tres" id="2_vfu73"]
+
+[node name="LevelUpChoiceUi" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+script = ExtResource("1_ard8x")
+static_preview_item = ExtResource("2_vfu73")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "发现道具！"
+
+[node name="ItemCardContainer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ItemRewardCard" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ItemCardContainer" instance=ExtResource("2_ard8x")]
+layout_mode = 1
+offset_right = 212.0
+offset_bottom = 167.0

@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://x3gd5mh58x5r"]
+
+[ext_resource type="Script" uid="uid://dbmy0b1fnl3v5" path="res://scripts/ui/HUD.gd" id="1_kw0id"]
+
+[sub_resource type="Gradient" id="Gradient_kw0id"]
+colors = PackedColorArray(0, 0, 0, 1, 0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_atyv1"]
+gradient = SubResource("Gradient_kw0id")
+width = 300
+height = 20
+
+[sub_resource type="Gradient" id="Gradient_ig75s"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.831373, 0.164706, 0.164706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ed8p"]
+gradient = SubResource("Gradient_ig75s")
+width = 300
+height = 20
+
+[sub_resource type="Gradient" id="Gradient_atyv1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ll6g"]
+gradient = SubResource("Gradient_atyv1")
+width = 300
+height = 20
+
+[sub_resource type="Gradient" id="Gradient_4ed8p"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.207843, 0.870588, 0.207843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rnyu1"]
+gradient = SubResource("Gradient_4ed8p")
+width = 300
+height = 20
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_kw0id")
+
+[node name="LayoutRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStatus_VBox" type="VBoxContainer" parent="LayoutRoot"]
+layout_mode = 1
+offset_right = 23.0
+offset_bottom = 59.0
+scale = Vector2(0.994716, 1)
+alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="LayoutRoot/PlayerStatus_VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+texture_under = SubResource("GradientTexture2D_atyv1")
+texture_progress = SubResource("GradientTexture2D_4ed8p")
+
+[node name="XPBar" type="TextureProgressBar" parent="LayoutRoot/PlayerStatus_VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 20)
+layout_direction = 3
+layout_mode = 2
+texture_under = SubResource("GradientTexture2D_6ll6g")
+texture_progress = SubResource("GradientTexture2D_rnyu1")
+
+[node name="Label" type="Label" parent="LayoutRoot/PlayerStatus_VBox/XPBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "LV1"
+horizontal_alignment = 2
+
+[node name="Money_HBox" type="HBoxContainer" parent="LayoutRoot/PlayerStatus_VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LayoutRoot/PlayerStatus_VBox/Money_HBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LayoutRoot/PlayerStatus_VBox/Money_HBox"]
+layout_mode = 2
+text = "50
+"
+
+[node name="WaveTimer_VBox" type="VBoxContainer" parent="LayoutRoot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_right = 28.0
+offset_bottom = 76.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="LayoutRoot/WaveTimer_VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wave 1
+"
+
+[node name="TimeLabel" type="Label" parent="LayoutRoot/WaveTimer_VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "55"
+
+[node name="PendingRewards_VBox" type="VBoxContainer" parent="LayoutRoot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_bottom = 49.0
+grow_horizontal = 0
+alignment = 1

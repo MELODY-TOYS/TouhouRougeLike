@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://0iql1nntlu5a"]
+
+[ext_resource type="Script" uid="uid://bh7mx75ooinix" path="res://scripts/ui/postWave/PostWaveUIManager.gd" id="1_jxwq3"]
+[ext_resource type="PackedScene" uid="uid://deo0ya23a7mu7" path="res://scenes/ui/postWave/PlayerStatsPanel.tscn" id="2_hifon"]
+
+[node name="PostWaveUiManager" type="CanvasLayer"]
+script = ExtResource("1_jxwq3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeftPanel" type="Control" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerStatsPanel" parent="HBoxContainer" instance=ExtResource("2_hifon")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3

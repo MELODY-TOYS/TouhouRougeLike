@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4gs2dvyr1ekd"]
+
+[ext_resource type="Texture2D" uid="uid://bce715arb34r5" path="res://icon.svg" id="1_8x71j"]
+[ext_resource type="Script" uid="uid://dcd54ed4ddbp0" path="res://scripts/ui/stat_row.gd" id="1_h6jik"]
+
+[node name="StatRow" type="HBoxContainer"]
+script = ExtResource("1_h6jik")
+display_name = "最大生命值"
+icon = ExtResource("1_8x71j")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_8x71j")
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+text = "最大生命值"
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+text = "123"

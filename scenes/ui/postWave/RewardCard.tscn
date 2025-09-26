@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://yg3okfwnf3jq"]
+
+[ext_resource type="Script" uid="uid://bd385kql5xfwj" path="res://scripts/ui/postWave/reward_card.gd" id="1_5sgum"]
+[ext_resource type="Resource" uid="uid://cyn4e3u8cebxn" path="res://datas/rewards/upgrades/test_levelup.tres" id="2_peyl6"]
+
+[node name="RewardCard" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5sgum")
+preview_in_editor = true
+preview_data = ExtResource("2_peyl6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "未命名奖励"
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "测试"
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "这是一段描述"

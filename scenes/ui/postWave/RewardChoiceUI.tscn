@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://caa21u7vyskd2"]
+
+[node name="RewardChoiceUi" type="ColorRect"]

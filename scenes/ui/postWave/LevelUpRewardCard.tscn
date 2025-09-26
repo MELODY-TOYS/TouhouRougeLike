@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c33hydydkbw3n"]
+
+[ext_resource type="Script" uid="uid://dm64sbkk6m8mb" path="res://scripts/ui/postWave/level_up_reward_card.gd" id="1_cva0l"]
+[ext_resource type="PackedScene" uid="uid://yg3okfwnf3jq" path="res://scenes/ui/postWave/RewardCard.tscn" id="1_ilq75"]
+
+[node name="LevelUpRewardCard" type="VBoxContainer"]
+script = ExtResource("1_cva0l")
+
+[node name="RewardCard" parent="." instance=ExtResource("1_ilq75")]
+layout_mode = 2
+
+[node name="SelectButton" type="Button" parent="."]
+layout_mode = 2
+text = "选择
+"

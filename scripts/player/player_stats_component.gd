@@ -26,7 +26,7 @@ func process_damage(attacker: Node, _physical_source: Node, base_damage: float) 
 	set_stat(Attributes.Stat.HEALTH, health)
 	
 	# 广播状态变化
-	health_updated.emit(health, max_health)
+	stats_changed.emit()
 
 	# 检查死亡
 	if health == 0.0:

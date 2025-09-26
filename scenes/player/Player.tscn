@@ -87,7 +87,6 @@ radius = 128.0
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_gfjak")
-speed = null
 animation_blend_time = 0.1
 
 [node name="View" type="Node2D" parent="."]

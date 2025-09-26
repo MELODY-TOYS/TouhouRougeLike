@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqhhdd3khhc53"]
+
+[ext_resource type="Script" uid="uid://n17rwgfyiobt" path="res://scripts/ui/postWave/item_reward_card.gd" id="1_xgnu4"]
+[ext_resource type="PackedScene" uid="uid://yg3okfwnf3jq" path="res://scenes/ui/postWave/RewardCard.tscn" id="2_lmcl1"]
+
+[node name="ItemRewardCard" type="VBoxContainer"]
+script = ExtResource("1_xgnu4")
+
+[node name="RewardCard" parent="." instance=ExtResource("2_lmcl1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TakeButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "拿取"
+
+[node name="RecycleButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "回收"
