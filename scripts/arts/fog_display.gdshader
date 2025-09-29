@@ -39,7 +39,7 @@ void fragment() {
 
 
     // === 2. 制作有层次感的雾气纹理 (全新逻辑) ===
-    
+
     // -- 层 1: 大块的、缓慢移动的雾气“底座” --
     vec2 world_uv1 = world_coord / scale_layer1;
     vec2 scrolling_uv1 = world_uv1 + TIME * scroll_speed_layer1;
@@ -58,7 +58,7 @@ void fragment() {
     // smoothstep 会根据阈值，将平滑的噪声“雕刻”成有清晰边界和大量透明区域的形状。
     // 只有当 combined_noise 的值大于 fog_threshold 时，雾气才会开始出现。
     float textured_alpha = smoothstep(fog_threshold, fog_threshold + fog_softness, combined_noise);
-    
+
 
     // === 3. 组合最终效果 ===
     COLOR = fog_color;

@@ -36,31 +36,31 @@ func _ready() -> void:
 	name_label = find_child("NameLabel", true, false) as Label
 	value_label = find_child("ValueLabel", true, false) as Label
 	
-	if not is_instance_valid(Global.player):
-		print("[TEST] Global.player 不存在，正在创建模拟玩家...")
-		
-		# 2. 创建一个临时的 Node2D 作为“假”玩家
-		var mock_player = Node2D.new()
-		mock_player.name = "MockPlayer"
-		
-		# 3. 创建一个真实的 StatsComponent 实例
-		var stats_comp = BaseStatsComponent.new()
-		#    我们需要给它一个临时的 StatsData 资源才能工作
-		stats_comp.stats_data = ActorStatsData.new() # 假设ActorStatsData可以这样新建
-		stats_comp.name = "StatsComponent"
-		
-		# 4. 将属性组件加到“假”玩家下面
-		mock_player.add_child(stats_comp)
-		
-		# 5. 将“假”玩家加到场景树中，这样它才能正常工作
-		add_child(mock_player)
-		
-		# 6. 最关键的一步：把它注册到 Global 单例里
-		Global.player = mock_player
-
-	# 在节点都确保找到后，再执行更新
-	_update_static_display()
-	
+	#if not is_instance_valid(Global.player):
+		#print("[TEST] Global.player 不存在，正在创建模拟玩家...")
+		#
+		## 2. 创建一个临时的 Node2D 作为“假”玩家
+		#var mock_player = Node2D.new()
+		#mock_player.name = "MockPlayer"
+		#
+		## 3. 创建一个真实的 StatsComponent 实例
+		#var stats_comp = BaseStatsComponent.new()
+		##    我们需要给它一个临时的 StatsData 资源才能工作
+		#stats_comp.stats_data = ActorStatsData.new() # 假设ActorStatsData可以这样新建
+		#stats_comp.name = "StatsComponent"
+		#
+		## 4. 将属性组件加到“假”玩家下面
+		#mock_player.add_child(stats_comp)
+		#
+		## 5. 将“假”玩家加到场景树中，这样它才能正常工作
+		#add_child(mock_player)
+		#
+		## 6. 最关键的一步：把它注册到 Global 单例里
+		#Global.player = mock_player
+#
+	## 在节点都确保找到后，再执行更新
+	#_update_static_display()
+	#
 	if not Engine.is_editor_hint():
 		# (游戏运行时的逻辑保持不变)
 		var stats_comp = Global.player.get_node_or_null("StatsComponent")

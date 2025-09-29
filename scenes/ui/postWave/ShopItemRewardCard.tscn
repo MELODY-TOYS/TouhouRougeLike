@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce6pjjucp7h4v"]
+
+[ext_resource type="PackedScene" uid="uid://yg3okfwnf3jq" path="res://scenes/ui/postWave/RewardCard.tscn" id="1_xdt0p"]
+[ext_resource type="Texture2D" uid="uid://bce715arb34r5" path="res://icon.svg" id="2_w6bys"]
+
+[node name="RewardCard" instance=ExtResource("1_xdt0p")]
+
+[node name="Icon" parent="MarginContainer/VBoxContainer/TopBar" index="0"]
+texture = ExtResource("2_w6bys")
+
+[node name="TypeLabel" parent="MarginContainer/VBoxContainer/TopBar/VBoxContainer" index="1"]
+text = "属性升级"
+
+[node name="DescriptionLabel" parent="MarginContainer/VBoxContainer" index="1"]
+text = "这是一个奖励。1232"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+text = "刷新"
